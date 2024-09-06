@@ -1,0 +1,278 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+*{
+  font-family: "Montserrat", sans-serif;
+}
+.anim{@apply transition-all duration-300;}
+.wrapper{@apply max-w-[1440px] px-5 mx-auto;}
+.toggle-button.active .drop_arrow{@apply rotate-0;}
+
+.h2{@apply text-24 lg:text-26 2xl:text-36 font-bold text-dark block;}
+.h3{@apply text-18 lg:text-20 2xl:text-24 font-bold text-primary block;}
+.text24{@apply text-20 lg:text-22 2xl:text-24 font-bold text-dark;}
+.text20{@apply text-16 lg:text-18 2xl:text-20 font-bold text-dark;}
+.text18{@apply text-16 2xl:text-18 font-bold text-primary;}
+.text16{@apply text-14 xl:text-16 font-semibold text-primary}
+.text_titel{@apply text-16 xl:text-16 font-semibold text-primary;}
+.btn_primary{@apply flex items-center ml-auto text-sm sm:text-16 xl:text-18 sm:ml-3 2xl:ml-6 space-x-2 px-2.5 py-2 sm:px-3.5 sm:py-2 2xl:py-2.5 2xl:px-5 border border-primary rounded-lg text-white hover:text-primary bg-primary hover:bg-transparent anim;}
+
+.btn_secondry{@apply flex items-center ml-auto text-sm sm:text-16 xl:text-18 sm:ml-3 2xl:ml-6 space-x-2 px-2.5 py-2 sm:px-3.5 sm:py-2 2xl:py-2.5 2xl:px-5 border border-primary rounded-lg bg-transparent hover:bg-primary anim;}
+.search{@apply mt-3 sm:mt-0 order-3 sm:order-2 p-2.5 2xl:p-4 2xl:py-3 rounded-md bg-white flex space-x-2 w-full ml-auto;}
+#search.active{@apply translate-y-2 opacity-100 visible;}
+.error-message{@apply block absolute bottom-0 left-2.5 text-xs font-semibold text-primary-error;}
+.input{@apply outline-none p-2.5 xl:p-3 rounded-md border border-t4;}
+.custome_table tr:not(:first-child,:last-child){@apply border-b border-t4;}
+.btn_table{@apply py-2 px-3 bg-primary hover:bg-transparent text-white hover:text-primary border border-primary hover:border-primary rounded-lg ;}
+.check_lable label{@apply text-14 font-semibold text-t2;}
+.sidebar_link{@apply border-primary bg-t6  anim text-primary; }
+.sidebar_link{
+  font-weight : 600 !important;
+}
+
+
+// check box design 
+
+.check_lable .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+  border-color: #CBD4E1 !important;
+}
+.check_lable .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .check_lable .mdc-checkbox:hover .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background.mdc-checkbox:hover .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
+  background-color: #3B418B !important;
+  border-color: #3B418B !important;
+}
+.check_lable .mdc-checkbox:active .mdc-checkbox__native-control:checked~.mdc-checkbox__ripple, .check_lable .mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple{
+  background-color: transparent !important;
+  opacity: 0 !important;
+}
+.mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark{
+  color: #fff !important;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #0C0F35;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+@tailwind utilities;
+.mdc-dialog, .mdc-dialog__scrim{
+  border-radius: 24px;
+  overflow: hidden ;
+}
+.cdk-overlay-dark-backdrop{
+  background: rgba(12, 15, 53, 0.3) !important;
+  filter: blur(4px) !important;
+  --tw-backdrop-blur: blur(8px) !important;
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.text16.mat-mdc-header-cell{
+  font-weight: 600 !important;
+  background-color: #E2E8F0 !important;
+  padding: 22px 18px !important;
+}
+.t_ditails{
+  font-weight: 500 !important;
+  padding: 12px 18px !important;
+}
+.t_ditails2{
+  font-weight: 700 !important;
+  padding: 12px 18px !important;
+}
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider{
+  background-color: #3B418B !important;
+}
+.text-primary-error{@apply text-red-600;}
+
+// selact and date input 
+.mat-mdc-form-field-infix{
+  min-height: auto !important;
+  padding: 0 !important;
+  z-index: 3;
+}
+
+// .mat-mdc-form-field{
+//   flex-direction: row !important;
+//   width: 100% !important;
+// }
+.mat-datepicker-toggle .mat-mdc-icon-button.mat-mdc-button-base {
+  height: auto !important;
+  padding: 0 12px;
+}
+.mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
+  display: none;
+}
+.p-inputtext:enabled:focus{
+  box-shadow: none !important;
+}
+
+.dropdown .mdc-text-field, .date .mdc-text-field{@apply w-full bg-white text-16 xl:text-lg border-0 text-dark placeholder:text-t3 rounded-lg outline-none py-[9px] xl:py-[13px] px-4;}
+.date .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__leading, .date .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__trailing, .dropdown .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__leading, .dropdown .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: #CBD4E1 !important;
+  background-color: #fff;
+}
+.dropdown .mat-mdc-text-field-wrapper .mat-mdc-select:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-70%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  z-index: 999;
+  right: 0px;
+  border-bottom: 2px solid #585C8C;
+  border-right: 2px solid #585C8C;
+  border-radius: 0px 0px 3px 0px;
+  transition: 0.3s all;
+}
+.dropdown .mat-mdc-select[aria-expanded="true"]:after {
+  transform: translateY(-20%) rotate(-135deg);
+}
+.dropdown .mat-mdc-select-arrow-wrapper {
+  display: none;
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__leading, .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__notch, .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__trailing{
+  border-width: 1px !important;
+}
+.dropdown .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__trailing, 
+.date .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__trailing{
+  border-radius: 0 7px 7px 0 !important;
+}
+.dropdown .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__leading, 
+.date .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__leading {
+  border-radius: 7px 0 0 7px !important;
+}
+.cle_drop .mat-mdc-form-field-infix span {
+  margin-right: 10px;
+}
+.cle_drop .mat-mdc-form-field-infix {
+  display: flex;
+  align-items: center;
+}
+.cle_drop .mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+.date.mat-mdc-form-field + span.error-message {
+  padding-left: 0;
+}
+
+// tab 
+.tabs mat-tab-group .mat-mdc-tab-label-container {
+  max-width: max-content;
+}
+.tabs mat-tab-group .mat-mdc-tab-header .mdc-tab {
+  padding: 0;
+}
+.tabs mat-tab-group .mat-mdc-tab-header .mdc-tab:not(:last-child){
+  margin-right: 30px;
+  min-width: auto;
+}
+.tabs mat-tab-group .mat-mdc-tab-header .mdc-tab.mdc-tab--active span.mdc-tab__text-label span.text20{
+  color: #3B418B;
+}
+.tabs mat-tab-group .mat-mdc-tab-header .mdc-tab.mdc-tab--active .mdc-tab-indicator__content{
+  border-top-width: 4px;
+  border-color: #3B418B;
+}
+
+// dark Table 
+.dark_hrad .text16.mat-mdc-header-cell {
+  // text-align: center;
+  color: #fff;
+  background-color: #3B418B !important;
+}
+.drop_table .mat-expansion-panel {
+  box-shadow: none !important;
+  background: #E2E8F0;
+  border-radius: 16px !important;
+}
+.dropdown.custom_drop span.mat-mdc-select-value-text,
+.dropdown.custom_drop .mat-mdc-select-placeholder {
+  font-size: 14px;
+  font-weight: 700;
+} 
+.dropdown.custom_drop .mdc-text-field{
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+// mat tab
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab{
+  flex-grow: 0 !important;
+}
+
+// popup css
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background: transparent !important;
+  border: 0px solid transparent !important;
+}
+.cdk-overlay-container .cdk-overlay-pane {
+  max-width: 100% !important;
+  padding: 5px !important;
+}
+
+/* paginator */
+// p-dropdown.p-element.p-inputwrapper.ng-star-inserted.p-inputwrapper-filled {
+//   display: none !important;
+// }
+.p-paginator{
+  padding: 0 !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #3B418B !important;
+  border-color: #EFF6FF !important;
+  color: #fff !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page,
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+  background-color: transparent !important;
+  border: 0 none !important;
+  color: #3B418B;
+  min-width: 3rem !important;
+  height: 3rem !important;
+  margin: 0.143rem !important;
+  transition: box-shadow 0.2s !important;
+  border-radius: 14px !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page,
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last:hover{
+  color: #3B418B !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover,
+.p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover{
+  background: #3B418B1a !important;
+  border-color: transparent !important;
+}
+span.p-paginator-pages{
+  border: 0px solid #3B418B !important;
+  border-radius: 15px !important;
+}
+.w-full.paginator .p-paginator{
+  justify-content: end !important;
+}
+.data_paginator p-paginator .p-overlay.p-component{
+  top: -140px !important;
+  transform-origin: center !important
+}
+.p-ripple.p-element.p-dropdown-item span,.p-paginator-rpp-options.p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled span{
+  font-weight: 600 !important;
+}
+
+input.form-control {
+    width: 20px !important;
+    height: 20px !important;
+}
+@media (max-width: 1366px){
+  .cle_drop .mat-mdc-form-field-infix span.mat-mdc-select-min-line{
+    font-size: 12px;
+  }
+  .cle_drop .mat-mdc-form-field-flex .mat-mdc-form-field-infix{
+    width: 135px !important;
+  }
+}
