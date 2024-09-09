@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { Paginator } from 'primeng/paginator';
 import { AddEditRoleComponent } from './add-edit-role/add-edit-role.component';
 import { RolePermissionsService } from './role-permissions.service';
+import { ExpenseService } from '../expense/expense.service';
 
 export interface CouponComponent{
   id:string;
@@ -46,7 +47,7 @@ export class RolePermissionsComponent {
   constructor(
     private _globalFunctions:GlobalFunctions,
     private _toastr:ToastrService,
-    private _couponService:RolePermissionsService,
+    private _couponService:ExpenseService,
     private _dialog:MatDialog,
     private _router: Router,
   ){}
@@ -81,21 +82,21 @@ export class RolePermissionsComponent {
       search:this.searchCoupon || '',
     }
 
-    // this._couponService.getSize(filter).subscribe((result:any)=>{
-    //   if(result && result.IsSuccess){
-    //     this.totalCoupon = result?.Data?.totalDocs;
+    this._couponService.getSize(filter).subscribe((result:any)=>{
+      if(result && result.IsSuccess){
+        this.totalCoupon = result?.Data?.totalDocs;
     //     this.COUPON_DATA = result.Data.docs;
     //     this.couponData = new MatTableDataSource<CouponComponent>(this.COUPON_DATA);
     //     this.couponData.sort = this.couponSort;
     //     this.isTableLoading = false;
-    //   } else {
-    //     this.isTableLoading = false;
-    //     this._globalFunctions.successErrorHandling(result,this,true)
-    //   }
-    // },(error:any)=>{
-    //   this.isTableLoading = false;
-    //   this._globalFunctions.errorHanding(error,this,true);
-    // })
+      } else {
+        this.isTableLoading = false;
+        this._globalFunctions.successErrorHandling(result,this,true)
+      }
+    },(error:any)=>{
+      this.isTableLoading = false;
+      this._globalFunctions.errorHanding(error,this,true);
+    })
   }
   
   createRole(){
@@ -131,7 +132,7 @@ export class RolePermissionsComponent {
   }
 
   deleteSchool(element:any){
-    this.isTableLoading = true;
+    // this.isTableLoading = true;
     const dialogRef = this._dialog.open(CommonModalComponent,{
       width:'410px',
       height:'fit-content',

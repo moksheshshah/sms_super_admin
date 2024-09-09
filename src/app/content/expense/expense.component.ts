@@ -82,21 +82,21 @@ export class ExpenseComponent {
       search: this.searchCoupon || '',
     }
 
-    // this._couponService.getSize(filter).subscribe((result: any) => {
-    //   if (result && result.IsSuccess) {
-    //     this.totalExpanse = result?.Data?.totalDocs;
+    this._couponService.getSize(filter).subscribe((result: any) => {
+      if (result && result.IsSuccess) {
+        this.totalExpanse = result?.Data?.totalDocs;
     //     // this.COUPON_DATA = result.Data.docs;
     //     // this.couponData = new MatTableDataSource<ExamsComponent>(this.COUPON_DATA);
     //     // this.couponData.sort = this.couponSort;
     //     this.isTableLoading = false;
-    //   } else {
-    //     this.isTableLoading = false;
-    //     this._globalFunctions.successErrorHandling(result, this, true)
-    //   }
-    // }, (error: any) => {
-    //   this.isTableLoading = false;
-    //   this._globalFunctions.errorHanding(error, this, true);
-    // })
+      } else {
+        this.isTableLoading = false;
+        this._globalFunctions.successErrorHandling(result, this, true)
+      }
+    }, (error: any) => {
+      this.isTableLoading = false;
+      this._globalFunctions.errorHanding(error, this, true);
+    })
   }
 
   addIncome() {
@@ -109,7 +109,7 @@ export class ExpenseComponent {
   }
 
   deleteExpense(resData: any) {
-    this.isTableLoading = true;
+    // this.isTableLoading = true;
     const dialogRef = this._dialog.open(CommonModalComponent, {
       width: '410px',
       height: 'fit-content',

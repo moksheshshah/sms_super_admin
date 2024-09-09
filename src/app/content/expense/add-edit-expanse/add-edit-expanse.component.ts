@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import moment from 'moment';
-import { Validators } from 'ngx-editor';
+import { Editor, Toolbar, Validators } from 'ngx-editor';
 import { SchoolsService } from '../../schools/schools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -39,6 +39,9 @@ export class AddEditExpanseComponent {
     { key: 'Gpay', value: 'gpay' },
     { key: 'Phonepay', value: 'phonepay' },
   ];
+  editor !: Editor;
+  toolbar: Toolbar = [['bold', 'italic'], ['underline', 'strike'], ['code', 'blockquote'], ['ordered_list', 'bullet_list'], [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }], ['link', 'image'], ['text_color', 'background_color'], ['align_left', 'align_center', 'align_right', 'align_justify'],];
+  ingredient_length: any = 0;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -52,18 +55,13 @@ export class AddEditExpanseComponent {
   ) { }
 
   ngOnInit() {
+   this.editor = new Editor();
     this.getVarients();
     this.prepareAddEditExpenseForm();
     this.couponId = this._activatedRoute.snapshot.paramMap.get('id');
     if (this.couponId && this.couponId != "studentdetail") {
       this.pageType = "Edit";
     }
-  }
-
-  tabChanged(tabChangeEvent: MatTabChangeEvent) {
-    this.selectedTab = tabChangeEvent.index
-    localStorage.setItem('tabIndex', this.selectedTab)
-    this.isDataLoad = !this.isDataLoad
   }
 
   getVarients() {
@@ -187,7 +185,7 @@ export class AddEditExpanseComponent {
     );
   }
 
-  uploadItemImage(event: any,type:any): void {
+  uploadItemImage(event: any): void {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (!this.constants.imagearray.includes(file.type)) {
@@ -205,25 +203,12 @@ export class AddEditExpanseComponent {
         this._couponService.getImage(fileObj).subscribe(
           (result: any) => {
             if (result && result.IsSuccess) {
-              if(type === 'studentImg'){
                 this.selectedItemImg = result.Data.imagePath;
                 this.isUpload = true;
-                const itemImageFormControl = this.productCouponForm.get('student_img');
+                const itemImageFormControl = this.productCouponForm.get('file');
                 itemImageFormControl.setValue(result.Data.imagePath);
-              } else if(type === 'fatherImg'){
-                this.selectedFatherImg = result.Data.imagePath;
-                this.isUpload = true;
-                const itemImageFormControl = this.productCouponForm.get('father_img');
-                itemImageFormControl.setValue(result.Data.imagePath);
-              } else if(type === 'motherImg'){
-                this.selectedMotherImg = result.Data.imagePath;
-                this.isUpload = true;
-                const itemImageFormControl = this.productCouponForm.get('mother_img');
-                itemImageFormControl.setValue(result.Data.imagePath);
-              } else
-
-              this._toastr.clear();
-              this._toastr.success(result.Message, 'Success');
+                this._toastr.clear();
+                this._toastr.success(result.Message, 'Success');
             } else {
               this._globalFunctions.successErrorHandling(result, this, true);
             }
@@ -238,23 +223,21 @@ export class AddEditExpanseComponent {
     }
   }
 
-  removeFillAvatar(type:any): void {
-    if(type == 'studentImg'){
-      const itemFillImageFormControl = this.productCouponForm.get('student_img');
+  removeFillAvatar(): void {
+      const itemFillImageFormControl = this.productCouponForm.get('file');
       itemFillImageFormControl.setValue(null);
       this.selectedItemImg = null;
-    } else if(type == 'fatherImg'){
-      const itemFillImageFormControl = this.productCouponForm.get('father_img');
-      itemFillImageFormControl.setValue(null);
-      this.selectedFatherImg = null;
-    } else if(type == 'motherImg'){
-      const itemFillImageFormControl = this.productCouponForm.get('mother_img');
-      itemFillImageFormControl.setValue(null);
-      this.selectedMotherImg = null;
-    }
   }
 
   imageOnError(event: any) {
     event.target.src = this.constants.defaultImage;
   }
+
+  ingredientLength(event: any = '') {
+    this.ingredient_length = event.length
+    if (event.length > 10000) {
+      this._toastr.clear();
+      this._toastr.error("You can not write more product description", 'Oops!');
+    }
+  } 
 }

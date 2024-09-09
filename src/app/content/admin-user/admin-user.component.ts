@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CommonModalComponent } from '../../common-modal/common-modal.component';
 import { AdminUserService } from './admin-user.service';
+import { ExpenseService } from '../expense/expense.service';
 
 export interface adminUsercomponent{
   no:any;
@@ -70,7 +71,7 @@ export class AdminUserComponent {
  constructor(
    private _globalFunctions:GlobalFunctions,
    private _toastr:ToastrService,
-   private _couponService:AdminUserService,
+   private _couponService:ExpenseService,
    private _dialog:MatDialog,
    private _router: Router,
  ){}
@@ -101,21 +102,21 @@ export class AdminUserComponent {
      search:this.searchCoupon || '',
    }
 
-  //  this._couponService.getSize(filter).subscribe((result:any)=>{
-  //    if(result && result.IsSuccess){
-  //      this.totalCoupon = result?.Data?.totalDocs;
+   this._couponService.getSize(filter).subscribe((result:any)=>{
+     if(result && result.IsSuccess){
+       this.totalCoupon = result?.Data?.totalDocs;
   //      // this.STUDENTS_REPORT_DATA = result.Data.docs;
   //      // this.students_report_Data = new MatTableDataSource<studentsReportComponent>(this.STUDENTS_REPORT_DATA);
   //      // this.students_report_Data.sort = this.couponSort;
   //      this.isTableLoading = false;
-  //    } else {
-  //      this.isTableLoading = false;
-  //      this._globalFunctions.successErrorHandling(result,this,true)
-  //    }
-  //  },(error:any)=>{
-  //    this.isTableLoading = false;
-  //    this._globalFunctions.errorHanding(error,this,true);
-  //  })
+     } else {
+       this.isTableLoading = false;
+       this._globalFunctions.successErrorHandling(result,this,true)
+     }
+   },(error:any)=>{
+     this.isTableLoading = false;
+     this._globalFunctions.errorHanding(error,this,true);
+   })
  }
  addAdmin(){
     this._router.navigate(['admin-user/', 'adminuserdetail'])
@@ -128,7 +129,7 @@ export class AdminUserComponent {
 
 
  changeStatusAction(event:any,resData:any){
-   this.isTableLoading = true;
+  //  this.isTableLoading = true;
    const dialogRef = this._dialog.open(CommonModalComponent,{
      width:'600px',
      data:{
@@ -170,7 +171,7 @@ export class AdminUserComponent {
  }
 
  deleteAdmin(element:any){
-   this.isTableLoading = true;
+  //  this.isTableLoading = true;
    const dialogRef = this._dialog.open(CommonModalComponent,{
      width:'410px',
      height:'fit-content',
